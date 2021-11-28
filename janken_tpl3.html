@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
+<title>じゃんけんグリコ</title>
+</head>
+<body>
+
+<header>
+  <div class="title">
+    <img class="title_logo" src="./img/jyanken-guriko-title.png" alt="title">
+  </div>
+</header>
+
+<main>
+  <div>
+    <div class=start_title>
+      <h2>じゃんけんグリコスタート</h2>
+    </div>
+    <div class="game"></div>
+      <div class="hand_a">
+        <ul><p>あなた（手をえらんでね）</p></ul>
+        <ul><img src="./img/gu.png" id="gu_btn" alt="グー"></ul>
+        <ul><img src="./img/choki.png" id="cho_btn" alt="チョキ"></ul>
+        <ul><img src="./img/par.png" id="par_btn" alt="パー"></ul>  
+      </div>
+    
+      <div class="game_a">
+        <div class="img_a">
+          <img id="character_a" src="./img/character_a.png" alt="キャラクターA">
+          <p id="judgment"></p>
+          <img class="goal_a" src="./img/goal.PNG" alt="ゴール">
+        </div>
+        <div>
+          <table>
+            <td id="a1"></td><td id="a2"></td><td id="a3"></td><td id="a4"></td><td id="a5"></td>
+            <td id="a6"></td><td id="a7"></td><td id="a8"></td><td id="a9"></td><td id="a10"></td>
+            <td id="a11"></td><td id="a12"></td><td id="a13"></td><td id="a14"></td><td id="a15"></td>
+            <td id="a16"></td><td id="a17"></td><td id="a18"></td><td id="a19"></td><td id="a20"></td>
+            <td id="a21"></td><td id="a22"></td><td id="a23"></td>
+          </table>
+        </div>
+      </div>
+      
+      <div class="hand_b">
+        <ul><p>あいて</p></ul>
+        <ul><p id="pc_hands">なにをだすかな？</p></ul>
+      </div>
+      <div class="game_b">
+        <div class="img_b">
+          <img class="character_b" src="./img/character_b.png" alt="キャラクターB">
+          <img class="goal_b" src="./img/goal.PNG" alt="ゴール">
+        </div>
+        <div>
+          <table>
+            <td id="b1"></td><td id="b2"></td><td id="b3"></td><td id="b4"></td><td id="b5"></td>
+            <td id="b6"></td><td id="b7"></td><td id="b8"></td><td id="b9"></td><td id="b10"></td>
+            <td id="b11"></td><td id="b12"></td><td id="b13"></td><td id="b14"></td><td id="b15"></td>
+            <td id="b16"></td><td id="b17"></td><td id="b18"></td><td id="b19"></td><td id="b20"></td>
+            <td id="b21"></td><td id="b22"></td><td id="b23"></td>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</main>
+
+<footer></footer>
+<script>
+//じゃんけん用のSCRIPTを書いてください
+
+// 変数設定
+let gu='<img src="./img/gu.png" width=150px>'
+let cho='<img src="./img/choki.png" width=150px>'
+let par='<img src="./img/par.png" width=150px>'
+let equal="あいこ"
+let win="勝ち"
+let loose="負け"
+let view=""
+
+
+
+$("#gu_btn").on("click", function(){
+        // 乱数計算（１～３）
+        // 乱数1：グー 乱数2：チョキ 乱数3：パー
+        let r=Math.floor(Math.random()*3+1);
+        console.log(r);
+        //勝ち負け判定：パソコン(R)がグー(1)だったらあいこ、チョキ(2)だったら勝ち、パー(3)だったら負け
+        //  id#pc_handsにパソコンの手(R)を表示、id#judgmentに勝敗を表示
+        if(r==1){
+          $("#pc_hands").html(gu)
+          & $("#a1").css("background-color","orange") 
+          & $("#b1").css("background-color","orange")
+          & $("#judgment").text(equal);}
+          else if(r==2){
+          $("#pc_hands").html(cho)
+          & $("#a1").css("background-color","orange") 
+          & $("#a2").css("background-color","orange")
+          & $("#a3").css("background-color","orange")
+          & $("#judgment").text(win);}
+          else if(r==3){
+            $("#pc_hands").html(par)
+          & $("#b1").css("background-color","orange") 
+          & $("#b2").css("background-color","orange")
+          & $("#b3").css("background-color","orange")
+          & $("#b4").css("background-color","orange")
+          & $("#b5").css("background-color","orange")
+          & $("#b6").css("background-color","orange")
+          & $("#judgment").text(loose);};
+          });
+
+$("#cho_btn").on("click", function(){
+        let r=Math.floor(Math.random()*3+1);
+        console.log(r);
+        if(r==1){
+          $("#pc_hands").html(gu) & $("#judgment").text(loose);}
+        else if(r==2){
+          $("#pc_hands").html(cho) & $("#judgment").text(equal);}
+        else if(r==3){
+          $("#pc_hands").html(par) & $("#judgment").text(win);}
+    });
+
+$("#par_btn").on("click", function(){
+        let r=Math.floor(Math.random()*3+1);
+        console.log(r);
+        if(r==1){
+          $("#pc_hands").html(gu) & $("#judgment").text(win);}
+        else if(r==2){
+          $("#pc_hands").html(cho) & $("#judgment").text(loose);}
+        else if(r==3){
+          $("#pc_hands").html(par) & $("#judgment").text(equal);}
+    });
+
+
+
+    
+    
+    
+    
+    
+
+</script>
+</body>
+</html>
